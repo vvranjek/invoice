@@ -14,10 +14,22 @@ SCRIPT_DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 FILE_NAME=Invoice_Crea_$(date +"%Y-%m-%d_%T").fods
 CONFIG_FILE=$SCRIPT_DIR/.config
 INVOICE_DIR=$SCRIPT_DIR/../Crea_$(date +"%Y")
+INVOICE_XML=$INVOICE_DIR/Sources/$FILE_NAME
 INVOICE_FILE=$INVOICE_DIR/$FILE_NAME
+INVOICE_PDF="${INVOICE_FILE%.*}.pdf"
+
 TEMPLATE_FILE=$SCRIPT_DIR/Invoice_Crea_template.fods
 
 echo "Config file: $CONFIG_FILE"
+
+
+if ! git pull; 
+then
+    echo
+    echo "Error pulling from git. Make sure everything is working right."
+    echo "Press any key to continue or Ctrl-C to exit"
+    read
+fi
 
 
 
@@ -43,7 +55,7 @@ while [ -z $INVOICE_NUMBER ]; do
 done
 
 
-echo Modifying invoice $INVOICE_FILE
+echo Modifying invoice $INVOICE_XML
 
 echo "Enter amount in EUR: "
 read AMOUNT
@@ -58,15 +70,15 @@ if [ ! -z $NUMBER ]; then
 fi
 
 
-echo Copying invoice to $INVOICE_FILE
+echo Copying invoice to $INVOICE_XML
 mkdir -p $INVOICE_DIR
-cp $TEMPLATE_FILE $INVOICE_FILE
+cp $TEMPLATE_FILE $INVOICE_XML
 
 echo "Invoice amount: $AMOUNT"
 echo "Invoice id: $INVOICE_ID"
 
-sed -i "s/123456789/$AMOUNT/g" $INVOICE_FILE
-sed -i "s/9876_54321/$INVOICE_ID/g" $INVOICE_FILE
+sed -i "s/123456789/$AMOUNT/g" $INVOICE_XML
+sed -i "s/9876_54321/$INVOICE_ID/g" $INVOICE_XML
 
 
 echo before: $INVOICE_NUMBER
@@ -81,7 +93,15 @@ echo now: $INVOICE_NUMBER
 # Save number to file
 echo $INVOICE_NUMBER > $CONFIG_FILE
 
-soffice --convert-to pdf $INVOICE_FILE --outdir $INVOICE_DIR --headless
+
+echo pdf name: $INVOICE_PDF
+
+soffice --convert-to pdf $INVOICE_XML --outdir $INVOICE_DIR --headless
+
+git add .
+git push -am "Invoice $INVOICE_NUMBER $INVOICE_ID"
+
+xdg-open $INVOICE_PDF
 
 
 
