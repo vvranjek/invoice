@@ -98,8 +98,12 @@ echo pdf name: $INVOICE_PDF
 
 soffice --convert-to pdf $INVOICE_XML --outdir $INVOICE_DIR --headless
 
+echo
+echo "Submitting to GT. Press any key to continue...
+read 
 git add .
-git push -am "Invoice $INVOICE_NUMBER $INVOICE_ID"
+git commit -am "Invoice $INVOICE_NUMBER $INVOICE_ID"
+git push
 
 xdg-open $INVOICE_PDF
 
