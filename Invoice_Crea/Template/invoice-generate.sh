@@ -65,8 +65,11 @@ echo "This is invoice number $INVOICE_NUMBER"
 echo "Press enter to continue or insert other number"
 read NUMBER
 
+
 if [ ! -z $NUMBER ]; then
     INVOICE_NUMBER=$NUMBER
+    INVOICE_ID="$(date +%Y)-$INVOICE_NUMBER"
+    echo "Invoice id: $INVOICE_ID"
 fi
 
 
@@ -88,7 +91,7 @@ INVOICE_NUMBER=$((INVOICE_NUMBER+1))
 
 echo now: $INVOICE_NUMBER
 
-#let "INVOICE_NUMBER++"
+
 
 # Save number to file
 echo $INVOICE_NUMBER > $CONFIG_FILE
@@ -99,7 +102,7 @@ echo pdf name: $INVOICE_PDF
 soffice --convert-to pdf $INVOICE_XML --outdir $INVOICE_DIR --headless
 
 echo
-echo "Submitting to GT. Press any key to continue...
+echo "Submitting to GIT. Press any key to continue..."
 read 
 git add .
 git commit -am "Invoice $INVOICE_NUMBER $INVOICE_ID"
