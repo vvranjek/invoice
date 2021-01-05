@@ -14,7 +14,7 @@ SCRIPT_DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 FILE_NAME=Invoice_Crea_$(date +"%Y-%m-%d_%T").fods
 CONFIG_FILE=$SCRIPT_DIR/.config
 INVOICE_DIR=$SCRIPT_DIR/../Crea_$(date +"%Y")
-INVOICE_XML=$INVOICE_DIR/Sources/$FILE_NAME
+INVOICE_XML=$INVOICE_DIR/../Sources/$FILE_NAME
 INVOICE_FILE=$INVOICE_DIR/$FILE_NAME
 INVOICE_PDF="${INVOICE_FILE%.*}.pdf"
 
