@@ -60,6 +60,15 @@ echo Modifying invoice $INVOICE_XML
 echo "Enter amount in EUR: "
 read AMOUNT
 
+echo "Enter description (leave empty for 'Programming'): "
+read DESCRIPTION
+
+if [ ! -z $DESCRIPTION ]; then
+    DESCRIPTION='Programming'
+    INVOICE_ID="$(date +%Y)-$INVOICE_NUMBER"
+    echo "DESCRIPTION: $DESCRIPTION"
+fi
+
 echo
 echo "This is invoice number $INVOICE_NUMBER"
 echo "Press enter to continue or insert other number"
@@ -81,8 +90,10 @@ cp $TEMPLATE_FILE $INVOICE_XML
 echo "Invoice amount: $AMOUNT"
 echo "Invoice id: $INVOICE_ID"
 
+# Replace values
 sed -i "s/123456789/$AMOUNT/g" $INVOICE_XML
 sed -i "s/9876_54321/$INVOICE_ID/g" $INVOICE_XML
+sed -i "s/Description_string/$DESCRIPTION/g" $INVOICE_XML
 
 
 echo before: $INVOICE_NUMBER

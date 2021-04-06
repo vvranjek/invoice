@@ -10293,7 +10293,7 @@
     </table:table-row>
     <table:table-row table:style-name="ro2">
      <table:table-cell table:style-name="ce10" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="5" table:number-rows-spanned="1">
-      <text:p>Programming</text:p>
+      <text:p>Description_string</text:p>
      </table:table-cell>
      <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce35"/>
      <table:covered-table-cell table:style-name="ce57"/>
