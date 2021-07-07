@@ -63,7 +63,7 @@ read AMOUNT
 echo "Enter description (leave empty for 'Programming'): "
 read DESCRIPTION
 
-if [ ! -z $DESCRIPTION ]; then
+if [ -z $DESCRIPTION ]; then
     DESCRIPTION='Programming'
     INVOICE_ID="$(date +%Y)-$INVOICE_NUMBER"
     echo "DESCRIPTION: $DESCRIPTION"
