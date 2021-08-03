@@ -60,6 +60,7 @@ echo Modifying invoice $INVOICE_XML
 echo "Enter amount in EUR: "
 read AMOUNT
 
+echo "WARNING!!!! Please enter a description with MONTH, example Programming July"
 echo "Enter description (leave empty for 'Programming'): "
 read DESCRIPTION
 
