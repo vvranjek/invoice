@@ -117,7 +117,7 @@ soffice --convert-to pdf $INVOICE_XML --outdir $INVOICE_DIR --headless
 echo
 echo "Submitting to GIT. Press any key to continue..."
 read 
-git add .
+git add $INVOICE_XML $INVOICE_DIR/*
 git commit -am "Invoice $INVOICE_NUMBER $INVOICE_ID"
 git push
 
