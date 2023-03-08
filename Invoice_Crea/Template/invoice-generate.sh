@@ -57,15 +57,23 @@ done
 
 echo Modifying invoice $INVOICE_XML
 
-echo "Enter amount in EUR: "
-read AMOUNT
+
+echo "Enter number of hours worked (27.87 EUR/h). Leave empty to enter custom amount: "
+read AMOUNT_H
+if [ -z AMOUNT_H ]; then
+    echo "Enter amount in EUR: "
+    read AMOUNT
+else
+    AMOUNT=`printf "%0.2f\n" $((27.87*AMOUNT_H))`
+fi
+
 
 echo "WARNING!!!! Please enter a description with MONTH, example Programming July"
-echo "Enter description (leave empty for 'Programming'): "
+echo "Enter description (leave empty for 'Programming $AMOUNT_H'): "
 read DESCRIPTION
 
 if [ -z $DESCRIPTION ]; then
-    DESCRIPTION='Programming'
+    DESCRIPTION="Programming $AMOUNT_H"
     INVOICE_ID="$(date +%Y)-$INVOICE_NUMBER"
     echo "DESCRIPTION: $DESCRIPTION"
 fi
