@@ -64,7 +64,7 @@ if [ -z AMOUNT_H ]; then
     echo "Enter amount in EUR: "
     read AMOUNT
 else
-    AMOUNT=`printf "%0.2f\n" $((27.87*AMOUNT_H))`
+    AMOUNT=`printf "%0.2f\n" $((27.87*$AMOUNT_H))`
 fi
 
 
