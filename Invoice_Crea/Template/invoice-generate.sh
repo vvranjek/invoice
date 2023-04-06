@@ -58,13 +58,15 @@ done
 echo Modifying invoice $INVOICE_XML
 
 
-echo "Enter number of hours worked (27.87 EUR/h). Leave empty to enter custom amount: "
+echo "Enter number of hours worked (27.87 EUR/h). Leave empty to enter custom amount in EUR later: "
 read AMOUNT_H
 if [ -z AMOUNT_H ]; then
     echo "Enter amount in EUR: "
     read AMOUNT
 else
-    AMOUNT=`printf "%0.2f\n" $((27.87*$AMOUNT_H))`
+    #AMOUNT=`printf "%0.2f\n" $((27.87*$AMOUNT_H))`
+    AMOUNT=`bc -l <<< "27.87*$AMOUNT_H"`
+    echo Total amount is: $AMOUNT
 fi
 
 
