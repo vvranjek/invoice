@@ -58,27 +58,41 @@ done
 echo Modifying invoice $INVOICE_XML
 
 
-echo "Enter number of hours worked (27.87 EUR/h). Leave empty to enter custom amount in EUR later: "
-read AMOUNT_H
-if [ -z AMOUNT_H ]; then
-    echo "Enter amount in EUR: "
-    read AMOUNT
+########## PROGRAMMING ###############
+echo "Programming hours worked: "
+read PROG_HOURS
+
+echo "Programming price (27.87 EUR/h) "
+read PROG_PRICE
+if [ -z PROG_PRICE ]; then
+    PROG_PRICE=27.87
 else
-    #AMOUNT=`printf "%0.2f\n" $((27.87*$AMOUNT_H))`
-    AMOUNT=`bc -l <<< "27.87*$AMOUNT_H"`
-    echo Total amount is: $AMOUNT
+    PROG_PRICE=2
 fi
 
+PROG_TOTAL=`bc -l <<< "$PROG_HOURS*$PROG_PRICE"`
+echo Programming hours: "$PROG_HOURS"h,  Price: $PROG_PRICE EUR/h, Total amount is: $PROG_TOTAL
+######################################
 
-echo "WARNING!!!! Please enter a description with MONTH, example Programming July"
-echo "Enter description (leave empty for 'Programming $AMOUNT_H'): "
-read DESCRIPTION
 
-if [ -z $DESCRIPTION ]; then
-    DESCRIPTION="Programming $AMOUNT_H"
-    INVOICE_ID="$(date +%Y)-$INVOICE_NUMBER"
-    echo "DESCRIPTION: $DESCRIPTION"
+
+#########CONSULTING ##################
+echo "IT Consulting hours worked: "
+read CONS_HOURS
+
+echo "IT COnsulting price (27.87 EUR/h) "
+read CONS_PRICE
+if [ -z CONS_PRICE ]; then
+    CONS_PRICE=27.87
+else
+    CONS_PRICE=2
 fi
+
+CONS_TOTAL=`bc -l <<< "$CONS_HOURS*$CONS_PRICE"`
+echo IT Consulting hours: "$CONS_HOURS"h,  Price: $CONS_PRICE EUR/h, Total amount is: $CONS_TOTAL
+#######################################
+
+
 
 echo
 echo "This is invoice number $INVOICE_NUMBER"
@@ -102,9 +116,11 @@ echo "Invoice amount: $AMOUNT"
 echo "Invoice id: $INVOICE_ID"
 
 # Replace values
-sed -i "s/123456789/$AMOUNT/g" $INVOICE_XML
-sed -i "s/9876_54321/$INVOICE_ID/g" $INVOICE_XML
-sed -i "s/Description_string/$DESCRIPTION/g" $INVOICE_XML
+sed -i "s/PROG_HOURS/$PROG_HOURS_REPLACE/g" $INVOICE_XML
+sed -i "s/PROG_PRICE/$PROG_PRICE_REPLACE/g" $INVOICE_XML
+sed -i "s/CONS_HOURS/$IT_HOURS_REPLACE/g" $INVOICE_XML
+sed -i "s/CONS	_PRICE/$IT_PRICE_REPLACE/g" $INVOICE_XML
+
 
 
 echo before: $INVOICE_NUMBER
