@@ -64,11 +64,10 @@ read PROG_HOURS
 
 echo "Programming price (27.87 EUR/h) "
 read PROG_PRICE
-if [ -z PROG_PRICE ]; then
+if [ ! -z PROG_PRICE ]; then
     PROG_PRICE=27.87
-else
-    PROG_PRICE=2
 fi
+
 
 PROG_TOTAL=`bc -l <<< "$PROG_HOURS*$PROG_PRICE"`
 echo Programming hours: "$PROG_HOURS"h,  Price: $PROG_PRICE EUR/h, Total amount is: $PROG_TOTAL
@@ -82,16 +81,13 @@ read CONS_HOURS
 
 echo "IT COnsulting price (27.87 EUR/h) "
 read CONS_PRICE
-if [ -z CONS_PRICE ]; then
+if [ ! -z CONS_PRICE ]; then
     CONS_PRICE=27.87
-else
-    CONS_PRICE=2
 fi
 
 CONS_TOTAL=`bc -l <<< "$CONS_HOURS*$CONS_PRICE"`
 echo IT Consulting hours: "$CONS_HOURS"h,  Price: $CONS_PRICE EUR/h, Total amount is: $CONS_TOTAL
 #######################################
-
 
 
 echo
@@ -116,10 +112,10 @@ echo "Invoice amount: $AMOUNT"
 echo "Invoice id: $INVOICE_ID"
 
 # Replace values
-sed -i "s/PROG_HOURS/$PROG_HOURS_REPLACE/g" $INVOICE_XML
-sed -i "s/PROG_PRICE/$PROG_PRICE_REPLACE/g" $INVOICE_XML
-sed -i "s/CONS_HOURS/$IT_HOURS_REPLACE/g" $INVOICE_XML
-sed -i "s/CONS	_PRICE/$IT_PRICE_REPLACE/g" $INVOICE_XML
+sed -i "s/PROG_HOURS_REPLACE/$PROG_HOURS/g" $INVOICE_XML
+sed -i "s/PROG_PRICE_REPLACE/$PROG_PRICE/g" $INVOICE_XML
+sed -i "s/IT_HOURS_REPLACE/$CONS_HOURS/g" $INVOICE_XML
+sed -i "s/IT_PRICE_REPLACE/$CONS_PRICE/g" $INVOICE_XML
 
 
 
@@ -140,6 +136,8 @@ echo pdf name: $INVOICE_PDF
 
 soffice --convert-to pdf $INVOICE_XML --outdir $INVOICE_DIR --headless
 
+xdg-open $INVOICE_PDF
+
 echo
 echo "Submitting to GIT. Press any key to continue..."
 read 
@@ -147,7 +145,7 @@ git add $INVOICE_XML $INVOICE_DIR/*
 git commit -am "Invoice $INVOICE_NUMBER $INVOICE_ID"
 git push
 
-xdg-open $INVOICE_PDF
+
 
 
 

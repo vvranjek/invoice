@@ -10247,11 +10247,11 @@
      </table:table-cell>
      <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce133"/>
      <table:table-cell table:style-name="ce155" office:value-type="string" calcext:value-type="string">
-      <text:p>PROG_HOURS_REPLACE</text:p>
+      <text:p>12</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce170"/>
      <table:table-cell table:style-name="ce178" office:value-type="string" calcext:value-type="string">
-      <text:p>PROG_PRICE_REPLACE</text:p>
+      <text:p>2</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce190" table:formula="of:=[.D19]*[.F19]" office:value-type="string" office:string-value="" calcext:value-type="error">
       <text:p>#VALUE!</text:p>
@@ -10265,11 +10265,11 @@
      </table:table-cell>
      <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce133"/>
      <table:table-cell table:style-name="ce155" office:value-type="string" calcext:value-type="string">
-      <text:p>IT_HOURS_REPLACE</text:p>
+      <text:p>5</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce170"/>
      <table:table-cell table:style-name="ce178" office:value-type="string" calcext:value-type="string">
-      <text:p>IT_PRICE_REPLACE</text:p>
+      <text:p>2</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce190" table:formula="of:=[.D20]*[.F20]" office:value-type="string" office:string-value="" calcext:value-type="error">
       <text:p>#VALUE!</text:p>
