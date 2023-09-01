@@ -10247,7 +10247,7 @@
      </table:table-cell>
      <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce133"/>
      <table:table-cell table:style-name="ce155" office:value-type="string" calcext:value-type="string">
-      <text:p>144</text:p>
+      <text:p>168</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce170"/>
      <table:table-cell table:style-name="ce178" office:value-type="string" calcext:value-type="string">
@@ -10265,7 +10265,7 @@
      </table:table-cell>
      <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce133"/>
      <table:table-cell table:style-name="ce155" office:value-type="string" calcext:value-type="string">
-      <text:p>77.8</text:p>
+      <text:p>13.5</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce170"/>
      <table:table-cell table:style-name="ce178" office:value-type="string" calcext:value-type="string">
