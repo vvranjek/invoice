@@ -62,10 +62,10 @@ echo Modifying invoice $INVOICE_XML
 echo "Programming hours worked: "
 read PROG_HOURS
 
-echo "Programming price (27.87 EUR/h) "
+echo "Programming price (30.00 EUR/h) "
 read PROG_PRICE
 if [ ! -z PROG_PRICE ]; then
-    PROG_PRICE=27.87
+    PROG_PRICE=30.00
 fi
 
 
@@ -79,10 +79,10 @@ echo Programming hours: "$PROG_HOURS"h,  Price: $PROG_PRICE EUR/h, Total amount 
 echo "IT Consulting hours worked: "
 read CONS_HOURS
 
-echo "IT COnsulting price (27.87 EUR/h) "
+echo "IT COnsulting price (30.00 EUR/h) "
 read CONS_PRICE
 if [ ! -z CONS_PRICE ]; then
-    CONS_PRICE=27.87
+    CONS_PRICE=30.00
 fi
 
 CONS_TOTAL=`bc -l <<< "$CONS_HOURS*$CONS_PRICE"`
